@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student ID Card Generator</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Student ID Card Generator</h1>
+            <p>Enter the details below to generate a premium ID card</p>
+        </header>
+
+        <main>
+            <!-- Input Form Section -->
+            <section class="form-section">
+                <form id="id-form">
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" placeholder="e.g. John Smith" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="designation">Designation</label>
+                        <input type="text" id="designation" placeholder="e.g. Graphics Designer" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="student-id">ID No</label>
+                        <input type="text" id="student-id" placeholder="e.g. 0000000000" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="blood-group">Blood Group</label>
+                        <input type="text" id="blood-group" placeholder="e.g. B+" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="text" id="phone" placeholder="e.g. +000-123-456-789" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">E-mail</label>
+                        <input type="email" id="email" placeholder="e.g. www.yourwebsite.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Address</label>
+                        <input type="text" id="address" placeholder="e.g. xyz Road, cty, country" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="profile-pic">Profile Picture</label>
+                        <input type="file" id="profile-pic" accept="image/*">
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" id="download-btn" class="btn btn-primary">Download ID Card</button>
+                    </div>
+                </form>
+            </section>
+
+            <!-- Preview Section -->
+            <section class="preview-section">
+                <div class="preview-container">
+                    <!-- Front View -->
+                    <div class="card-wrapper">
+                        <h3>Front View</h3>
+                        <div class="id-card front" id="card-front">
+                            <div class="wave top-wave"></div>
+                            <div class="content">
+                                <div class="profile-container">
+                                    <div class="profile-circle">
+                                        <img id="preview-img" src="https://via.placeholder.com/150" alt="Profile">
+                                    </div>
+                                </div>
+                                <div class="student-info">
+                                    <h2 id="view-name">JH0N SMITH</h2>
+                                    <p id="view-designation" class="designation">Graphics Designer</p>
+                                    <div class="details">
+                                        <div class="row"><span>ID NO</span> <span id="view-id">: 0000000000</span></div>
+                                        <div class="row"><span>Blood</span> <span id="view-blood">: B+</span></div>
+                                        <div class="row"><span>Phone</span> <span id="view-phone">: +000-123-456-789</span></div>
+                                        <div class="row"><span>E-mail</span> <span id="view-email">: www.yourwebsite.com</span></div>
+                                        <div class="row"><span>Address</span> <span id="view-address">: xyz Road,cty,country</span></div>
+                                    </div>
+                                </div>
+                                <div class="qr-code">
+                                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=JohnSmith" alt="QR Code">
+                                </div>
+                            </div>
+                            <div class="wave bottom-wave"></div>
+                        </div>
+                    </div>
+
+                    <!-- Back View -->
+                    <div class="card-wrapper">
+                        <h3>Back View</h3>
+                        <div class="id-card back" id="card-back">
+                            <div class="back-content">
+                                <h4>Terms And Conditions</h4>
+                                <ul>
+                                    <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam</li>
+                                    <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam</li>
+                                    <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam</li>
+                                </ul>
+                                <div class="back-contact">
+                                    <p>E-mail : <span id="back-email">www.yourwebsite.com</span></p>
+                                    <p>Phone : <span id="back-phone">+000-123-456-789</span></p>
+                                </div>
+                                <div class="signature-section">
+                                    <div class="signature-line"></div>
+                                    <p class="sign-text">Sign Here</p>
+                                    <p class="sign-subtext">Your Signature</p>
+                                </div>
+                                <div class="company-footer">
+                                    <div class="logo-circle">C</div>
+                                    <h2 class="company-name">Your Company</h2>
+                                    <p class="company-slogan">Your Slogan Here</p>
+                                </div>
+                            </div>
+                            <div class="wave back-bottom-wave"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+    <script src="js/script.js"></script>
+</body>
+</html>

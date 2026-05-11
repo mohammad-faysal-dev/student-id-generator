@@ -6,7 +6,7 @@
     --text-light: #ecf0f1;
     --bg-gray: #f8f9fa;
     --white: #ffffff;
-    --shadow: 0 10px 30px rgba(0,0,0,0.1);
+    --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
 
 * {
@@ -58,29 +58,45 @@ main {
     box-shadow: var(--shadow);
 }
 
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
 .form-group {
-    margin-bottom: 20px;
+    margin-bottom: 15px;
+}
+
+.form-group.full-width {
+    grid-column: span 2;
 }
 
 .form-group label {
     display: block;
-    margin-bottom: 8px;
+    margin-bottom: 6px;
     font-weight: 600;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
+    color: #555;
 }
 
 .form-group input {
     width: 100%;
-    padding: 12px 15px;
-    border: 2px solid #eee;
-    border-radius: 10px;
-    font-size: 1rem;
-    transition: border-color 0.3s;
+    padding: 10px 12px;
+    border: 2px solid #f0f0f0;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    transition: all 0.3s;
 }
 
 .form-group input:focus {
     outline: none;
     border-color: var(--primary-green);
+    background: #fdfdfd;
+}
+
+.form-actions {
+    margin-top: 20px;
 }
 
 .btn {
@@ -129,8 +145,8 @@ main {
     width: 350px;
     height: 550px;
     background: var(--white);
-    border-radius: 25px;
-    box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+    border-radius: 20px;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.2);
     position: relative;
     overflow: hidden;
     color: var(--white);
@@ -141,29 +157,23 @@ main {
     position: absolute;
     width: 200%;
     height: 300px;
-    background: var(--dark-green);
+    background: linear-gradient(135deg, var(--dark-green), var(--primary-green));
 }
 
 .top-wave {
-    top: -180px;
+    top: -200px;
     left: -50%;
     border-radius: 40%;
-    transform: rotate(-10deg);
+    transform: rotate(-5deg);
 }
 
-.bottom-wave {
-    bottom: -150px;
-    left: -50%;
-    border-radius: 45%;
-    background: var(--dark-green);
-    z-index: 1;
-}
+
 
 /* Front Card Content */
 .front .content {
     position: relative;
     z-index: 2;
-    padding: 40px 30px;
+    padding: 30px 25px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -171,22 +181,23 @@ main {
 }
 
 .profile-container {
-    width: 140px;
-    height: 140px;
+    width: 120px;
+    height: 120px;
     background: var(--white);
-    border-radius: 50%;
-    padding: 5px;
-    margin-bottom: 20px;
-    margin-top: 20px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    border-radius: 15px;
+    padding: 4px;
+    margin-bottom: 15px;
+    margin-top: 10px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    transform: rotate(-2deg);
 }
 
 .profile-circle {
     width: 100%;
     height: 100%;
-    border-radius: 50%;
+    border-radius: 12px;
     overflow: hidden;
-    border: 3px solid var(--primary-green);
+    border: 2px solid var(--primary-green);
 }
 
 .profile-circle img {
@@ -202,56 +213,77 @@ main {
 }
 
 .student-info h2 {
-    font-size: 1.8rem;
+    font-size: 1.5rem;
     font-weight: 800;
     text-transform: uppercase;
-    margin-bottom: 2px;
+    margin-bottom: 0px;
     color: var(--text-dark);
+    letter-spacing: 1px;
 }
 
 .designation {
-    font-size: 1rem;
+    font-size: 0.85rem;
     color: var(--dark-green);
-    font-weight: 500;
-    margin-bottom: 25px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    background: var(--light-green);
+    padding: 2px 15px;
+    border-radius: 20px;
+    display: inline-block;
 }
 
 .details {
     text-align: left;
     width: 100%;
-    font-size: 0.85rem;
+}
+
+.details-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px 20px;
+    border-bottom: 2px dashed #f0f0f0;
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+}
+
+.details-full {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding-top: 5px;
 }
 
 .row {
     display: flex;
-    margin-bottom: 8px;
+    font-size: 0.85rem;
+    align-items: flex-start;
 }
 
-.row span:first-child {
+.row span.label {
     font-weight: 700;
-    width: 70px;
+    width: 60px;
+    color: #888;
+    text-transform: uppercase;
+    flex-shrink: 0;
 }
 
-.row span:last-child {
+.row span.colon {
+    width: 12px;
+    color: #555;
+    font-weight: 700;
+}
+
+.row span.value {
     flex: 1;
-    font-weight: 500;
+    font-weight: 600;
+    color: #333;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
-.qr-code {
-    position: absolute;
-    bottom: 30px;
-    right: 30px;
+.details-full .row span.label {
     width: 80px;
-    height: 80px;
-    background: white;
-    padding: 5px;
-    border-radius: 5px;
-    z-index: 10;
-}
-
-.qr-code img {
-    width: 100%;
-    height: 100%;
 }
 
 /* Back Card Styling */
@@ -261,84 +293,112 @@ main {
 }
 
 .back-content {
-    padding: 40px 30px;
+    padding: 35px 25px;
     position: relative;
     z-index: 2;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 .back h4 {
-    font-size: 1.2rem;
+    font-size: 1rem;
     margin-bottom: 15px;
-    opacity: 0.9;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    padding-bottom: 5px;
 }
 
 .back ul {
     list-style: none;
-    margin-bottom: 30px;
+    margin-bottom: 25px;
 }
 
 .back ul li {
-    font-size: 0.8rem;
-    margin-bottom: 10px;
+    font-size: 0.75rem;
+    margin-bottom: 8px;
     padding-left: 15px;
     position: relative;
     line-height: 1.4;
-    opacity: 0.8;
+    opacity: 0.9;
 }
 
 .back ul li::before {
-    content: '•';
+    content: '→';
     position: absolute;
     left: 0;
     color: var(--light-green);
 }
 
-.back-contact {
-    font-size: 0.9rem;
-    margin-bottom: 40px;
-}
-
-.back-contact p {
-    margin-bottom: 5px;
-}
-
 .signature-section {
     text-align: center;
-    margin-bottom: 40px;
+    margin-top: auto;
+    margin-bottom: 80px;
 }
 
 .signature-line {
-    width: 150px;
+    width: 140px;
     height: 1px;
-    background: rgba(255,255,255,0.5);
-    margin: 0 auto 10px;
+    background: rgba(255, 255, 255, 0.6);
+    margin: 0 auto 8px;
 }
 
 .sign-text {
-    font-size: 1.2rem;
+    font-size: 1rem;
     font-weight: 700;
 }
 
 .sign-subtext {
-    font-size: 0.7rem;
-    opacity: 0.7;
+    font-size: 0.65rem;
+    opacity: 0.8;
 }
 
-.company-footer {
+.school-footer {
     position: absolute;
     bottom: 0;
     left: 0;
     width: 100%;
     background: var(--white);
     color: var(--dark-green);
-    padding: 20px;
+    padding: 12px;
     text-align: center;
     z-index: 5;
+    border-top: 4px solid var(--primary-green);
+}
+
+.card-footer-front {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 15px 25px;
+    background: linear-gradient(to right, #f8f9fa, #ffffff);
+    border-top: 1px solid #eee;
+}
+
+.school-info-minimal {
+    text-align: center;
+}
+
+.school-info-minimal h4 {
+    color: var(--dark-green);
+    font-size: 0.9rem;
+    font-weight: 800;
+    margin-bottom: 2px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.school-info-minimal p {
+    color: #777;
+    font-size: 0.65rem;
+    margin: 0;
 }
 
 .logo-circle {
-    width: 30px;
-    height: 30px;
+    width: 25px;
+    height: 25px;
     background: var(--dark-green);
     color: white;
     border-radius: 50%;
@@ -347,20 +407,25 @@ main {
     justify-content: center;
     font-weight: 900;
     margin-bottom: 5px;
+    font-size: 0.8rem;
 }
 
-.company-name {
-    font-size: 1.2rem;
+.school-name {
+    font-size: 1.1rem;
     font-weight: 800;
+    margin-bottom: 2px;
 }
 
-.company-slogan {
+.school-address,
+.school-phone {
     font-size: 0.7rem;
-    opacity: 0.8;
+    opacity: 0.9;
+    color: #666;
+    margin: 0;
 }
 
 .back-bottom-wave {
-    background: rgba(255,255,255,0.1);
+    background: rgba(255, 255, 255, 0.05);
     height: 400px;
     width: 300%;
     bottom: -200px;
@@ -373,7 +438,16 @@ main {
     main {
         grid-template-columns: 1fr;
     }
+
     .preview-section {
         position: static;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .form-group.full-width {
+        grid-column: span 1;
     }
 }

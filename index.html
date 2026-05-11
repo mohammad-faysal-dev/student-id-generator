@@ -18,37 +18,71 @@
             <!-- Input Form Section -->
             <section class="form-section">
                 <form id="id-form">
-                    <div class="form-group">
-                        <label for="name">Full Name</label>
-                        <input type="text" id="name" placeholder="e.g. John Smith" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="designation">Designation</label>
-                        <input type="text" id="designation" placeholder="e.g. Graphics Designer" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="student-id">ID No</label>
-                        <input type="text" id="student-id" placeholder="e.g. 0000000000" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="blood-group">Blood Group</label>
-                        <input type="text" id="blood-group" placeholder="e.g. B+" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="phone">Phone Number</label>
-                        <input type="text" id="phone" placeholder="e.g. +000-123-456-789" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">E-mail</label>
-                        <input type="email" id="email" placeholder="e.g. www.yourwebsite.com" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="address">Address</label>
-                        <input type="text" id="address" placeholder="e.g. xyz Road, cty, country" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="profile-pic">Profile Picture</label>
-                        <input type="file" id="profile-pic" accept="image/*">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="name">Student Name</label>
+                            <input type="text" id="name" placeholder="e.g. John Smith" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="student-id">Student ID No</label>
+                            <input type="text" id="student-id" placeholder="e.g. 2026-0001" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="class-grade">Class / Grade</label>
+                            <input type="text" id="class-grade" placeholder="e.g. Grade 10" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="section">Section</label>
+                            <input type="text" id="section" placeholder="e.g. Blue" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="blood-group">Blood Group</label>
+                            <input type="text" id="blood-group" placeholder="e.g. B+" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="text" id="phone" placeholder="e.g. +000-123-456-789" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" placeholder="e.g. john@example.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="dob">Date of Birth</label>
+                            <input type="date" id="dob" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="father-name">Father's Name</label>
+                            <input type="text" id="father-name" placeholder="e.g. Robert Smith" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="mother-name">Mother's Name</label>
+                            <input type="text" id="mother-name" placeholder="e.g. Maria Smith" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="issue-date">Issue Date</label>
+                            <input type="date" id="issue-date" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="expiry-date">Expiry Date</label>
+                            <input type="date" id="expiry-date" required>
+                        </div>
+                        <div class="form-group full-width">
+                            <label for="school-name">School Name</label>
+                            <input type="text" id="school-name" placeholder="e.g. International High School" required>
+                        </div>
+                        <div class="form-group full-width">
+                            <label for="school-address">School Address</label>
+                            <input type="text" id="school-address" placeholder="e.g. 123 Education Lane, City" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="school-phone">School Phone</label>
+                            <input type="text" id="school-phone" placeholder="e.g. +000-987-654-321" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="profile-pic">Photograph</label>
+                            <input type="file" id="profile-pic" accept="image/*">
+                        </div>
                     </div>
                     <div class="form-actions">
                         <button type="button" id="download-btn" class="btn btn-primary">Download ID Card</button>
@@ -72,20 +106,31 @@
                                 </div>
                                 <div class="student-info">
                                     <h2 id="view-name">JH0N SMITH</h2>
-                                    <p id="view-designation" class="designation">Graphics Designer</p>
+                                    <p class="designation">STUDENT</p>
                                     <div class="details">
-                                        <div class="row"><span>ID NO</span> <span id="view-id">: 0000000000</span></div>
-                                        <div class="row"><span>Blood</span> <span id="view-blood">: B+</span></div>
-                                        <div class="row"><span>Phone</span> <span id="view-phone">: +000-123-456-789</span></div>
-                                        <div class="row"><span>E-mail</span> <span id="view-email">: www.yourwebsite.com</span></div>
-                                        <div class="row"><span>Address</span> <span id="view-address">: xyz Road,cty,country</span></div>
+                                        <div class="details-grid">
+                                            <div class="row"><span class="label">ID NO</span> <span class="colon">:</span> <span class="value" id="view-id">0000000000</span></div>
+                                            <div class="row"><span class="label">CLASS</span> <span class="colon">:</span> <span class="value" id="view-class">Grad 10</span></div>
+                                            <div class="row"><span class="label">SECTION</span> <span class="colon">:</span> <span class="value" id="view-section">Blue</span></div>
+                                            <div class="row"><span class="label">BLOOD</span> <span class="colon">:</span> <span class="value" id="view-blood">B+</span></div>
+                                        </div>
+                                        <div class="details-full">
+                                            <div class="row"><span class="label">Phone</span> <span class="colon">:</span> <span class="value" id="view-phone">+000-123-456-789</span></div>
+                                            <div class="row"><span class="label">Email</span> <span class="colon">:</span> <span class="value" id="view-email">john@example.com</span></div>
+                                            <div class="row"><span class="label">Father</span> <span class="colon">:</span> <span class="value" id="view-father">Robert Smith</span></div>
+                                            <div class="row"><span class="label">Mother</span> <span class="colon">:</span> <span class="value" id="view-mother">Maria Smith</span></div>
+                                            <div class="row"><span class="label">D.O.B</span> <span class="colon">:</span> <span class="value" id="view-dob">01-01-2010</span></div>
+                                            <div class="row"><span class="label">Validity</span> <span class="colon">:</span> <span class="value" id="view-dates">01/2026 - 01/2027</span></div>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="qr-code">
-                                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=JohnSmith" alt="QR Code">
+                                <div class="card-footer-front">
+                                    <div class="school-info-minimal">
+                                        <h4 id="front-school-name">School Name</h4>
+                                        <p id="front-school-address">Address Line 1, City</p>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="wave bottom-wave"></div>
                         </div>
                     </div>
 
@@ -96,23 +141,20 @@
                             <div class="back-content">
                                 <h4>Terms And Conditions</h4>
                                 <ul>
-                                    <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam</li>
-                                    <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam</li>
-                                    <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam</li>
+                                    <li>This card is property of the school and must be returned upon request.</li>
+                                    <li>Loss of this card should be reported immediately to the school office.</li>
+                                    <li>This card is non-transferable and must be carried at all times.</li>
                                 </ul>
-                                <div class="back-contact">
-                                    <p>E-mail : <span id="back-email">www.yourwebsite.com</span></p>
-                                    <p>Phone : <span id="back-phone">+000-123-456-789</span></p>
-                                </div>
                                 <div class="signature-section">
                                     <div class="signature-line"></div>
-                                    <p class="sign-text">Sign Here</p>
-                                    <p class="sign-subtext">Your Signature</p>
+                                    <p class="sign-text">Principal</p>
+                                    <p class="sign-subtext">Signature</p>
                                 </div>
-                                <div class="company-footer">
-                                    <div class="logo-circle">C</div>
-                                    <h2 class="company-name">Your Company</h2>
-                                    <p class="company-slogan">Your Slogan Here</p>
+                                <div class="school-footer">
+                                    <div class="logo-circle">S</div>
+                                    <h2 id="back-school-name" class="school-name">School Name</h2>
+                                    <p id="back-school-address" class="school-address">Address Line 1, City</p>
+                                    <p id="back-school-phone" class="school-phone">Phone: +000-000-000</p>
                                 </div>
                             </div>
                             <div class="wave back-bottom-wave"></div>

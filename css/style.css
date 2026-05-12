@@ -239,7 +239,7 @@ main {
 
 .details-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     gap: 8px 20px;
     border-bottom: 2px dashed #f0f0f0;
     padding-bottom: 15px;

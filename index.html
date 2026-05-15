@@ -4,7 +4,461 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student ID Card Generator</title>
-    <link rel="stylesheet" href="css/style.css">
+    <style>
+:root {
+    --primary-green: #2ecc71;
+    --dark-green: #27ae60;
+    --light-green: #a2efbd;
+    --text-dark: #2c3e50;
+    --text-light: #ecf0f1;
+    --bg-gray: #f8f9fa;
+    --white: #ffffff;
+    --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    background-color: var(--bg-gray);
+    color: var(--text-dark);
+    padding: 40px 20px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    color: var(--dark-green);
+    margin-bottom: 10px;
+}
+
+header p {
+    color: #666;
+    font-size: 1.1rem;
+}
+
+main {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: start;
+}
+
+/* Form Styling */
+.form-section {
+    background: var(--white);
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: var(--shadow);
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group.full-width {
+    grid-column: span 2;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    color: #555;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px 12px;
+    border: 2px solid #f0f0f0;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    transition: all 0.3s;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: var(--primary-green);
+    background: #fdfdfd;
+}
+
+.form-actions {
+    margin-top: 20px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.2s, background 0.3s;
+}
+
+.btn-primary {
+    background: var(--dark-green);
+    color: var(--white);
+    width: 100%;
+}
+
+.btn-primary:hover {
+    background: #1e8449;
+    transform: translateY(-2px);
+}
+
+/* ID Card Styling */
+.preview-section {
+    position: sticky;
+    top: 40px;
+}
+
+.preview-container {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    align-items: center;
+}
+
+.card-wrapper h3 {
+    text-align: center;
+    margin-bottom: 15px;
+    font-size: 1.2rem;
+    color: #555;
+}
+
+.id-card {
+    width: 350px;
+    height: 550px;
+    background: var(--white);
+    border-radius: 20px;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.2);
+    position: relative;
+    overflow: hidden;
+    color: var(--white);
+}
+
+/* Waves */
+.wave {
+    position: absolute;
+    width: 200%;
+    height: 300px;
+    background: linear-gradient(135deg, var(--dark-green), var(--primary-green));
+}
+
+.top-wave {
+    top: -200px;
+    left: -50%;
+    border-radius: 40%;
+    transform: rotate(-5deg);
+}
+
+
+
+/* Front Card Content */
+.front .content {
+    position: relative;
+    z-index: 2;
+    padding: 30px 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+}
+
+.profile-container {
+    width: 120px;
+    height: 120px;
+    background: var(--white);
+    border-radius: 15px;
+    padding: 4px;
+    margin-bottom: 15px;
+    margin-top: 10px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    transform: rotate(-2deg);
+}
+
+.profile-circle {
+    width: 100%;
+    height: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 2px solid var(--primary-green);
+}
+
+.profile-circle img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.student-info {
+    text-align: center;
+    width: 100%;
+    color: #333;
+}
+
+.student-info h2 {
+    font-size: 1.5rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    margin-bottom: 0px;
+    color: var(--text-dark);
+    letter-spacing: 1px;
+}
+
+.designation {
+    font-size: 0.85rem;
+    color: var(--dark-green);
+    font-weight: 700;
+    margin-bottom: 15px;
+    background: var(--light-green);
+    padding: 2px 15px;
+    border-radius: 20px;
+    display: inline-block;
+}
+
+.details {
+    text-align: left;
+    width: 100%;
+}
+
+.details-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 8px 20px;
+    border-bottom: 2px dashed #f0f0f0;
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+}
+
+.details-full {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding-top: 5px;
+}
+
+.row {
+    display: flex;
+    font-size: 0.85rem;
+    align-items: flex-start;
+}
+
+.row span.label {
+    font-weight: 700;
+    width: 60px;
+    color: #888;
+    text-transform: uppercase;
+    flex-shrink: 0;
+}
+
+.row span.colon {
+    width: 12px;
+    color: #555;
+    font-weight: 700;
+}
+
+.row span.value {
+    flex: 1;
+    font-weight: 600;
+    color: #333;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.details-full .row span.label {
+    width: 80px;
+}
+
+/* Back Card Styling */
+.back {
+    background: var(--dark-green);
+    color: var(--white);
+}
+
+.back-content {
+    padding: 35px 25px;
+    position: relative;
+    z-index: 2;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.back h4 {
+    font-size: 1rem;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    padding-bottom: 5px;
+}
+
+.back ul {
+    list-style: none;
+    margin-bottom: 25px;
+}
+
+.back ul li {
+    font-size: 0.75rem;
+    margin-bottom: 8px;
+    padding-left: 15px;
+    position: relative;
+    line-height: 1.4;
+    opacity: 0.9;
+}
+
+.back ul li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--light-green);
+}
+
+.signature-section {
+    text-align: center;
+    margin-top: auto;
+    margin-bottom: 80px;
+}
+
+.signature-line {
+    width: 140px;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.6);
+    margin: 0 auto 8px;
+}
+
+.sign-text {
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.sign-subtext {
+    font-size: 0.65rem;
+    opacity: 0.8;
+}
+
+.school-footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: var(--white);
+    color: var(--dark-green);
+    padding: 12px;
+    text-align: center;
+    z-index: 5;
+    border-top: 4px solid var(--primary-green);
+}
+
+.card-footer-front {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 15px 25px;
+    background: linear-gradient(to right, #f8f9fa, #ffffff);
+    border-top: 1px solid #eee;
+}
+
+.school-info-minimal {
+    text-align: center;
+}
+
+.school-info-minimal h4 {
+    color: var(--dark-green);
+    font-size: 0.9rem;
+    font-weight: 800;
+    margin-bottom: 2px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.school-info-minimal p {
+    color: #777;
+    font-size: 0.65rem;
+    margin: 0;
+}
+
+.logo-circle {
+    width: 25px;
+    height: 25px;
+    background: var(--dark-green);
+    color: white;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 900;
+    margin-bottom: 5px;
+    font-size: 0.8rem;
+}
+
+.school-name {
+    font-size: 1.1rem;
+    font-weight: 800;
+    margin-bottom: 2px;
+}
+
+.school-address,
+.school-phone {
+    font-size: 0.7rem;
+    opacity: 0.9;
+    color: #666;
+    margin: 0;
+}
+
+.back-bottom-wave {
+    background: rgba(255, 255, 255, 0.05);
+    height: 400px;
+    width: 300%;
+    bottom: -200px;
+    left: -100%;
+    border-radius: 40%;
+    z-index: 1;
+}
+
+@media (max-width: 900px) {
+    main {
+        grid-template-columns: 1fr;
+    }
+
+    .preview-section {
+        position: static;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .form-group.full-width {
+        grid-column: span 1;
+    }
+}
+    </style>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -14,153 +468,275 @@
             <p>Enter the details below to generate a premium ID card</p>
         </header>
 
-        <main>
-            <!-- Input Form Section -->
-            <section class="form-section">
-                <form id="id-form">
-                    <div class="form-grid">
-                        <div class="form-group">
-                            <label for="name">Student Name</label>
-                            <input type="text" id="name" placeholder="e.g. John Smith" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="student-id">Student ID No</label>
-                            <input type="text" id="student-id" placeholder="e.g. 2026-0001" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="class-grade">Class / Grade</label>
-                            <input type="text" id="class-grade" placeholder="e.g. Grade 10" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="section">Section</label>
-                            <input type="text" id="section" placeholder="e.g. Blue" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="blood-group">Blood Group</label>
-                            <input type="text" id="blood-group" placeholder="e.g. B+" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="phone">Phone Number</label>
-                            <input type="text" id="phone" placeholder="e.g. +000-123-456-789" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email Address</label>
-                            <input type="email" id="email" placeholder="e.g. john@example.com" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="dob">Date of Birth</label>
-                            <input type="date" id="dob" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="father-name">Father's Name</label>
-                            <input type="text" id="father-name" placeholder="e.g. Robert Smith" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="mother-name">Mother's Name</label>
-                            <input type="text" id="mother-name" placeholder="e.g. Maria Smith" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="issue-date">Issue Date</label>
-                            <input type="date" id="issue-date" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="expiry-date">Expiry Date</label>
-                            <input type="date" id="expiry-date" required>
-                        </div>
-                        <div class="form-group full-width">
-                            <label for="school-name">School Name</label>
-                            <input type="text" id="school-name" placeholder="e.g. International High School" required>
-                        </div>
-                        <div class="form-group full-width">
-                            <label for="school-address">School Address</label>
-                            <input type="text" id="school-address" placeholder="e.g. 123 Education Lane, City" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="school-phone">School Phone</label>
-                            <input type="text" id="school-phone" placeholder="e.g. +000-987-654-321" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="profile-pic">Photograph</label>
-                            <input type="file" id="profile-pic" accept="image/*">
-                        </div>
-                    </div>
-                    <div class="form-actions">
-                        <button type="button" id="download-btn" class="btn btn-primary">Download ID Card</button>
-                    </div>
-                </form>
-            </section>
-
-            <!-- Preview Section -->
-            <section class="preview-section">
-                <div class="preview-container">
-                    <!-- Front View -->
-                    <div class="card-wrapper">
-                        <h3>Front View</h3>
-                        <div class="id-card front" id="card-front">
-                            <div class="wave top-wave"></div>
-                            <div class="content">
-                                <div class="profile-container">
-                                    <div class="profile-circle">
-                                        <img id="preview-img" src="https://via.placeholder.com/150" alt="Profile">
-                                    </div>
-                                </div>
-                                <div class="student-info">
-                                    <h2 id="view-name">JH0N SMITH</h2>
-                                    <p class="designation">STUDENT</p>
-                                    <div class="details">
-                                        <div class="details-grid">
-                                            <div class="row"><span class="label">ID NO</span> <span class="colon">:</span> <span class="value" id="view-id">0000000000</span></div>
-                                            <div class="row"><span class="label">CLASS</span> <span class="colon">:</span> <span class="value" id="view-class">Grad 10</span></div>
-                                            <div class="row"><span class="label">SECTION</span> <span class="colon">:</span> <span class="value" id="view-section">Blue</span></div>
-                                            <div class="row"><span class="label">BLOOD</span> <span class="colon">:</span> <span class="value" id="view-blood">B+</span></div>
-                                        </div>
-                                        <div class="details-full">
-                                            <div class="row"><span class="label">Phone</span> <span class="colon">:</span> <span class="value" id="view-phone">+000-123-456-789</span></div>
-                                            <div class="row"><span class="label">Email</span> <span class="colon">:</span> <span class="value" id="view-email">john@example.com</span></div>
-                                            <div class="row"><span class="label">Father</span> <span class="colon">:</span> <span class="value" id="view-father">Robert Smith</span></div>
-                                            <div class="row"><span class="label">Mother</span> <span class="colon">:</span> <span class="value" id="view-mother">Maria Smith</span></div>
-                                            <div class="row"><span class="label">D.O.B</span> <span class="colon">:</span> <span class="value" id="view-dob">01-01-2010</span></div>
-                                            <div class="row"><span class="label">Validity</span> <span class="colon">:</span> <span class="value" id="view-dates">01/2026 - 01/2027</span></div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Back View -->
-                    <div class="card-wrapper">
-                        <h3>Back View</h3>
-                        <div class="id-card back" id="card-back">
-                            <div class="back-content">
-                                <h4>Terms And Conditions</h4>
-                                <ul>
-                                    <li>১. পরিচয়পত্র সর্বদা সঙ্গে রাখতে হবে।</li>
-                                    <li>২. অন্য কাউকে ব্যবহার করতে দেওয়া যাবে না।</li>
-                                    <li>৩. হারিয়ে গেলে দ্রুত কর্তৃপক্ষকে জানাতে হবে।</li>
-                                    <li>৪. পরিচয়পত্র নষ্ট বা পরিবর্তন করা নিষিদ্ধ।</li>
-                                    <li>৫. প্রতিষ্ঠানের নিয়ম-কানুন মেনে চলতে হবে।</li>
-                                </ul>
-                                <div class="signature-section">
-                                    <div class="signature-line"></div>
-                                    <p class="sign-text">Principal</p>
-                                    <p class="sign-subtext">Signature</p>
-                                </div>
-                                <div class="school-footer">
-                                    <div class="logo-circle">S</div>
-                                    <h2 id="back-school-name" class="school-name">School Name</h2>
-                                    <p id="back-school-address" class="school-address">Address Line 1, City</p>
-                                    <p id="back-school-phone" class="school-phone">Phone: +000-000-000</p>
-                                </div>
-                            </div>
-                            <div class="wave back-bottom-wave"></div>
-                        </div>
-                    </div>
-                </div>
-            </section>
+        <main id="app-root">
+            <!-- Content will be generated by JavaScript -->
         </main>
     </div>
-    <script src="js/script.js"></script>
+
+    <script>
+        // Data and Config
+        const CONFIG = {
+            defaultProfilePic: 'https://via.placeholder.com/150',
+            schoolLogoPlaceholder: 'S'
+        };
+
+        // UI Generator Function
+        function renderApp() {
+            const root = document.getElementById('app-root');
+            root.innerHTML = `
+                <!-- Input Form Section -->
+                <section class="form-section">
+                    <form id="id-form">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="name">Student Name</label>
+                                <input type="text" id="name" placeholder="e.g. John Smith" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="student-id">Student ID No</label>
+                                <input type="text" id="student-id" placeholder="e.g. 2026-0001" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="class-grade">Class / Grade</label>
+                                <input type="text" id="class-grade" placeholder="e.g. Grade 10" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="section">Section</label>
+                                <input type="text" id="section" placeholder="e.g. Blue" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="blood-group">Blood Group</label>
+                                <input type="text" id="blood-group" placeholder="e.g. B+" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Phone Number</label>
+                                <input type="text" id="phone" placeholder="e.g. +000-123-456-789" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email Address</label>
+                                <input type="email" id="email" placeholder="e.g. john@example.com" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="dob">Date of Birth</label>
+                                <input type="date" id="dob" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="father-name">Father's Name</label>
+                                <input type="text" id="father-name" placeholder="e.g. Robert Smith" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="mother-name">Mother's Name</label>
+                                <input type="text" id="mother-name" placeholder="e.g. Maria Smith" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="issue-date">Issue Date</label>
+                                <input type="date" id="issue-date" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="expiry-date">Expiry Date</label>
+                                <input type="date" id="expiry-date" required>
+                            </div>
+                            <div class="form-group full-width">
+                                <label for="school-name">School Name</label>
+                                <input type="text" id="school-name" placeholder="e.g. International High School" required>
+                            </div>
+                            <div class="form-group full-width">
+                                <label for="school-address">School Address</label>
+                                <input type="text" id="school-address" placeholder="e.g. 123 Education Lane, City" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="school-phone">School Phone</label>
+                                <input type="text" id="school-phone" placeholder="e.g. +000-987-654-321" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="profile-pic">Photograph</label>
+                                <input type="file" id="profile-pic" accept="image/*">
+                            </div>
+                        </div>
+                        <div class="form-actions">
+                            <button type="button" id="download-btn" class="btn btn-primary">Download ID Card</button>
+                        </div>
+                    </form>
+                </section>
+
+                <!-- Preview Section -->
+                <section class="preview-section">
+                    <div class="preview-container">
+                        <!-- Front View -->
+                        <div class="card-wrapper">
+                            <h3>Front View</h3>
+                            <div class="id-card front" id="card-front">
+                                <div class="wave top-wave"></div>
+                                <div class="content">
+                                    <div class="profile-container">
+                                        <div class="profile-circle">
+                                            <img id="preview-img" src="${CONFIG.defaultProfilePic}" alt="Profile">
+                                        </div>
+                                    </div>
+                                    <div class="student-info">
+                                        <h2 id="view-name">JH0N SMITH</h2>
+                                        <p class="designation">STUDENT</p>
+                                        <div class="details">
+                                            <div class="details-grid">
+                                                <div class="row"><span class="label">ID NO</span> <span class="colon">:</span> <span class="value" id="view-id">0000000000</span></div>
+                                                <div class="row"><span class="label">CLASS</span> <span class="colon">:</span> <span class="value" id="view-class">Grade 10</span></div>
+                                                <div class="row"><span class="label">SECTION</span> <span class="colon">:</span> <span class="value" id="view-section">Blue</span></div>
+                                                <div class="row"><span class="label">BLOOD</span> <span class="colon">:</span> <span class="value" id="view-blood">B+</span></div>
+                                            </div>
+                                            <div class="details-full">
+                                                <div class="row"><span class="label">Phone</span> <span class="colon">:</span> <span class="value" id="view-phone">+000-123-456-789</span></div>
+                                                <div class="row"><span class="label">Email</span> <span class="colon">:</span> <span class="value" id="view-email">john@example.com</span></div>
+                                                <div class="row"><span class="label">Father</span> <span class="colon">:</span> <span class="value" id="view-father">Robert Smith</span></div>
+                                                <div class="row"><span class="label">Mother</span> <span class="colon">:</span> <span class="value" id="view-mother">Maria Smith</span></div>
+                                                <div class="row"><span class="label">D.O.B</span> <span class="colon">:</span> <span class="value" id="view-dob">01-01-2010</span></div>
+                                                <div class="row"><span class="label">Validity</span> <span class="colon">:</span> <span class="value" id="view-dates">01/2026 - 01/2027</span></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Back View -->
+                        <div class="card-wrapper">
+                            <h3>Back View</h3>
+                            <div class="id-card back" id="card-back">
+                                <div class="back-content">
+                                    <h4>Terms And Conditions</h4>
+                                    <ul>
+                                        <li>১. পরিচয়পত্র সর্বদা সঙ্গে রাখতে হবে।</li>
+                                        <li>২. অন্য কাউকে ব্যবহার করতে দেওয়া যাবে না।</li>
+                                        <li>৩. হারিয়ে গেলে দ্রুত কর্তৃপক্ষকে জানাতে হবে।</li>
+                                        <li>৪. পরিচয়পত্র নষ্ট বা পরিবর্তন করা নিষিদ্ধ।</li>
+                                        <li>৫. প্রতিষ্ঠানের নিয়ম-কানুন মেনে চলতে হবে।</li>
+                                    </ul>
+                                    <div class="signature-section">
+                                        <div class="signature-line"></div>
+                                        <p class="sign-text">Principal</p>
+                                        <p class="sign-subtext">Signature</p>
+                                    </div>
+                                    <div class="school-footer">
+                                        <div class="logo-circle">${CONFIG.schoolLogoPlaceholder}</div>
+                                        <h2 id="back-school-name" class="school-name">School Name</h2>
+                                        <p id="back-school-address" class="school-address">Address Line 1, City</p>
+                                        <p id="back-school-phone" class="school-phone">Phone: +000-000-000</p>
+                                    </div>
+                                </div>
+                                <div class="wave back-bottom-wave"></div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            `;
+        }
+
+        // Logic Initialization
+        function initApp() {
+            renderApp();
+
+            // Select inputs
+            const inputs = {
+                name: document.getElementById('name'),
+                id: document.getElementById('student-id'),
+                class: document.getElementById('class-grade'),
+                section: document.getElementById('section'),
+                blood: document.getElementById('blood-group'),
+                phone: document.getElementById('phone'),
+                email: document.getElementById('email'),
+                dob: document.getElementById('dob'),
+                father: document.getElementById('father-name'),
+                mother: document.getElementById('mother-name'),
+                issue: document.getElementById('issue-date'),
+                expiry: document.getElementById('expiry-date'),
+                schoolName: document.getElementById('school-name'),
+                schoolAddress: document.getElementById('school-address'),
+                schoolPhone: document.getElementById('school-phone'),
+                profilePic: document.getElementById('profile-pic')
+            };
+            
+            // Select preview elements
+            const views = {
+                name: document.getElementById('view-name'),
+                id: document.getElementById('view-id'),
+                class: document.getElementById('view-class'),
+                section: document.getElementById('view-section'),
+                blood: document.getElementById('view-blood'),
+                phone: document.getElementById('view-phone'),
+                email: document.getElementById('view-email'),
+                dob: document.getElementById('view-dob'),
+                father: document.getElementById('view-father'),
+                mother: document.getElementById('view-mother'),
+                dates: document.getElementById('view-dates'),
+                previewImg: document.getElementById('preview-img'),
+                backSchoolName: document.getElementById('back-school-name'),
+                backSchoolAddress: document.getElementById('back-school-address'),
+                frontSchoolPhone: document.getElementById('back-school-phone')
+            };
+
+            // Helper to format date
+            const formatDate = (dateStr) => {
+                if (!dateStr) return '';
+                const d = new Date(dateStr);
+                return d.toLocaleDateString('en-GB').replace(/\//g, '-'); // DD-MM-YYYY
+            };
+
+            const formatShortDate = (dateStr) => {
+                if (!dateStr) return '';
+                const d = new Date(dateStr);
+                return (d.getMonth() + 1).toString().padStart(2, '0') + '/' + d.getFullYear(); // MM/YYYY
+            };
+
+            const updateValidity = () => {
+                const issue = formatShortDate(inputs.issue.value);
+                const expiry = formatShortDate(inputs.expiry.value);
+                views.dates.textContent = (issue || 'MM/YYYY') + ' - ' + (expiry || 'MM/YYYY');
+            };
+
+            // Live update functions
+            inputs.name.addEventListener('input', (e) => views.name.textContent = e.target.value.toUpperCase() || 'JOHN SMITH');
+            inputs.id.addEventListener('input', (e) => views.id.textContent = (e.target.value || '0000000000'));
+            inputs.class.addEventListener('input', (e) => views.class.textContent = (e.target.value || 'Grade 10'));
+            inputs.section.addEventListener('input', (e) => views.section.textContent = (e.target.value || 'Blue'));
+            inputs.blood.addEventListener('input', (e) => views.blood.textContent = (e.target.value || 'B+'));
+            inputs.phone.addEventListener('input', (e) => views.phone.textContent = (e.target.value || '+000-123-456-789'));
+            inputs.email.addEventListener('input', (e) => views.email.textContent = (e.target.value || 'john@example.com'));
+            inputs.dob.addEventListener('input', (e) => views.dob.textContent = (formatDate(e.target.value) || '01-01-2010'));
+            inputs.father.addEventListener('input', (e) => views.father.textContent = (e.target.value || 'Robert Smith'));
+            inputs.mother.addEventListener('input', (e) => views.mother.textContent = (e.target.value || 'Maria Smith'));
+            
+            inputs.issue.addEventListener('input', updateValidity);
+            inputs.expiry.addEventListener('input', updateValidity);
+
+            inputs.schoolName.addEventListener('input', (e) => {
+                const val = e.target.value || 'School Name';
+                views.backSchoolName.textContent = val;
+            });
+            inputs.schoolAddress.addEventListener('input', (e) => {
+                const val = e.target.value || 'Address Line 1, City';
+                views.backSchoolAddress.textContent = val;
+            });
+            inputs.schoolPhone.addEventListener('input', (e) => views.backSchoolPhone.textContent = 'Phone: ' + (e.target.value || '+000-000-000'));
+
+            // Profile picture upload
+            inputs.profilePic.addEventListener('change', (e) => {
+                const file = e.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = (event) => {
+                        views.previewImg.src = event.target.result;
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+
+            // Download functionality (Simulated)
+            document.getElementById('download-btn').addEventListener('click', () => {
+                alert('Downloading Premium Student ID Card...');
+            });
+        }
+
+        // Run when DOM is ready
+        document.addEventListener('DOMContentLoaded', initApp);
+    </script>
 </body>
 </html>
